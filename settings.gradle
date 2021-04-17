@@ -1,0 +1,6 @@
+/*
+ * Copyright (c) 2021/  4/ 18.  Created by Hashim Tahir
+ */
+
+include ':app'
+rootProject.name = "RxJava"
