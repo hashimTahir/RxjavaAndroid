@@ -4,6 +4,7 @@
 
 package com.hashim.rxjava
 
+import io.reactivex.rxjava3.annotations.NonNull
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -41,10 +42,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 * Flowables can be converted to Observables and Observables can be converted to Flowables.
 * with toFlowable an toObservable
 * */
-fun hGetFlowable() {
+fun hGetFlowable(): @NonNull Flowable<Int>? {
 
     /*Even with one million emissions, this wont cause out of memory exception*/
-    Flowable.range(0, 1000000)
+    return Flowable.range(0, 10)
         .onBackpressureBuffer()
         .observeOn(Schedulers.computation())
 

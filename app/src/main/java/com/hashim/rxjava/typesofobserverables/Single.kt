@@ -17,8 +17,6 @@ import io.reactivex.rxjava3.core.Single
 *
 * */
 fun hGetSingle(): @NonNull Single<MutableList<TestData>>? {
-    var hTestDataSingle = Single.just(DataSource.hGetData())
-
-    return hTestDataSingle
+    return Single.just(DataSource.hGetData())
 
 }

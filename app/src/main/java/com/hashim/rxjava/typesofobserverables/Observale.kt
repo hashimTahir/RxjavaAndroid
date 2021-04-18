@@ -22,10 +22,9 @@ fun hGetObserveable(): @NonNull Observable<TestData>? {
     * throwable->Called when some exceptoin is thrown.
     * OnComplete->When emission is completed.
     * */
-    val hTestDataObservable = Observable
+
+    return Observable
         .fromIterable(DataSource.hGetData()) //create Observable from list
         .subscribeOn(Schedulers.io()) // switch tread to backgroud
-        .observeOn(AndroidSchedulers.mainThread()) //observe the results on main thread
-
-    return hTestDataObservable
+        .observeOn(AndroidSchedulers.mainThread())
 }

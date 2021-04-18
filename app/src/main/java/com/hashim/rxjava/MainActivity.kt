@@ -7,10 +7,6 @@ package com.hashim.rxjava
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hashim.rxjava.databinding.ActivityMainBinding
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -20,17 +16,40 @@ class MainActivity : AppCompatActivity() {
         hActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(hActivityMainBinding.root)
 
+        /*The object inside the subscribe method is observer
+        * this is what recieves the values from observables
+        * */
 
         hGetObserveable()?.subscribe({
-            Timber.d("Task Emitted ${it.hName}")
+            Timber.d("Observable Emitted ${it.hName}")
         }, {
 
-            Timber.d("Exception throw ${it.message}")
+            Timber.d("Observable throw ${it.message}")
         }, {
-            Timber.d("Completed")
+            Timber.d("Observable Completed")
 
         })
 
+        hGetSingle()?.subscribe({
+            Timber.d("Single Whole list emitted as Single $it")
+        }, {
+            Timber.d("Single exception ${it.message}")
+        })
+
+        hGetCompletable()?.subscribe({
+            Timber.d("Completable On Success")
+        }, {
+            Timber.d("Completable Excetion ${it.message}")
+
+        })
+
+        hGetFlowable()?.subscribe({
+            Timber.d("Flowable $it")
+        }, {
+            Timber.d("Flowable exception ${it.message}")
+        }, {
+            Timber.d("Flowable On Complete")
+        })
 
     }
 
