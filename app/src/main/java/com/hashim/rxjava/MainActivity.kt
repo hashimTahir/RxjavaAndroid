@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 
@@ -20,19 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(hActivityMainBinding.root)
 
 
-        /*Declate an observable from datasource
-        * Observable is Any Object whose state needs to be observed
-        * Observer is what wishes to be notified when state of observable is changed
-        * */
-        val hTestDataObservable = Observable
-            .fromIterable(DataSource.hGetData()) //create Observable from list
-            .subscribeOn(Schedulers.io()) // switch tread to backgroud
-            .observeOn(AndroidSchedulers.mainThread()) //observe the results on main thread
-
-        /*First lambda is Onnext, for every value emitted it is called everytime
-        * Second one is exception,
-        * third one is onComplete, when all emissions complete, it is called*/
-        hTestDataObservable.subscribe({
+        hGetObserveable()?.subscribe({
             Timber.d("Task Emitted ${it.hName}")
         }, {
 
@@ -41,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             Timber.d("Completed")
 
         })
+
 
     }
 
