@@ -4,12 +4,15 @@
 
 package com.hashim.rxjava
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.hashim.rxjava.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var hActivityMainBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        hActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(hActivityMainBinding.root)
     }
 }
