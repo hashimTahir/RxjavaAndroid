@@ -7,10 +7,8 @@ package com.hashim.rxjava
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hashim.rxjava.databinding.ActivityMainBinding
-import com.hashim.rxjava.operators.hCreateListofTasksUsingCreateOperator
-import com.hashim.rxjava.operators.hCreateSingleTaskUsingCreateOperator
-import com.hashim.rxjava.operators.hGetObservableByJust
-import com.hashim.rxjava.operators.hGetObservablebyRangeUsingMap
+import com.hashim.rxjava.operators.hGetIntervalObservable
+import com.hashim.rxjava.operators.hGetTimerObservable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import timber.log.Timber
 
@@ -29,68 +27,17 @@ class MainActivity : AppCompatActivity() {
         * For this, CompositeDisposable is used
         * */
 
-//        val hObservalbeDisposable = hGetObserveable()?.subscribe({
-//            Timber.d("Observable Emitted ${it.hName}")
-//        }, {
-//
-//            Timber.d("Observable throw ${it.message}")
-//        }, {
-//            Timber.d("Observable Completed")
-//
-//        })
-//
-//        val hSingeDisposable = hGetSingle()?.subscribe({
-//            Timber.d("Single Whole list emitted as Single $it")
-//        }, {
-//            Timber.d("Single exception ${it.message}")
-//        })
-//
-//        val hCompletableDisposable = hGetCompletable()?.subscribe({
-//            Timber.d("Completable On Success")
-//        }, {
-//            Timber.d("Completable Excetion ${it.message}")
-//
-//        })
-//
-//        val hFlowableDisposable = hGetFlowable()?.subscribe({
-//            Timber.d("Flowable $it")
-//        }, {
-//            Timber.d("Flowable exception ${it.message}")
-//        }, {
-//            Timber.d("Flowable On Complete")
-//        })
-
-
-        hCreateListofTasksUsingCreateOperator()?.subscribe(
-            { Timber.d("hCreateListofTasksUsingCreateOperator ${it.hName}") },
+        hGetIntervalObservable()?.subscribe(
+            { Timber.d("hIntervalOperator ${it}") },
             { Timber.d("Exception ${it.message}") },
-            { Timber.d("hCreateListofTasksUsingCreateOperator Completed") }
+            { Timber.d("hIntervalOperator Completed") }
+        )
+        hGetTimerObservable()?.subscribe(
+            { Timber.d("hGetTimerObservable ${it}") },
+            { Timber.d("Exception ${it.message}") },
+            { Timber.d("hGetTimerObservable Completed") }
         )
 
-        hCreateSingleTaskUsingCreateOperator()?.subscribe(
-            { Timber.d("hCreateSingleTaskUsingCreateOperator ${it.hName}") },
-            { Timber.d("Exception ${it.message}") },
-            { Timber.d("hCreateSingleTaskUsingCreateOperator Completed") }
-        )
-
-        hGetObservableByJust()?.subscribe(
-            { Timber.d("hGetObservableByJust ${it}") },
-            { Timber.d("Exception ${it.message}") },
-            { Timber.d("hGetObservableByJust Completed") }
-        )
-
-        hGetObservablebyRangeUsingMap()?.subscribe(
-            { Timber.d("hGetObservablebyRangeUsingMap ${it}") },
-            { Timber.d("Exception ${it.message}") },
-            { Timber.d("hGetObservablebyRangeUsingMap Completed") }
-        )
-
-//        hCompositeDisposable.addAll(
-//            hObservalbeDisposable,
-//            hCompletableDisposable,
-//            hFlowableDisposable,
-//            hSingeDisposable
-//        )
     }
 
     override fun onDestroy() {
