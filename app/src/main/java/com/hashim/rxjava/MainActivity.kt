@@ -6,11 +6,13 @@ package com.hashim.rxjava
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
-import com.hashim.rxjava.filteroperators.hGetDistinctObservable
-import com.hashim.rxjava.filteroperators.hGetFilterObservable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     lateinit var hActivityMainBinding: ActivityMainBinding
@@ -27,23 +29,50 @@ class MainActivity : AppCompatActivity() {
         * For this, CompositeDisposable is used
         * */
 
-        hGetFilterObservable()?.subscribe(
-            {
-                Timber.d("hGetFilterObservable ${it}")
-            },
-            { Timber.d("hGetFilterObservable ${it.message}") },
-            { Timber.d("hGetFilterObservable Completed") }
-        )
+
+        /*Example of debounce operator*/
+        Observable.create<String> { string ->
+            hActivityMainBinding.hSeachV.setOnQueryTextListener(object :
+                SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (!string.isDisposed()) {
+                        string.onNext(newText);
+                    }
+                    return false
+                }
+
+            })
+
+        }
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                Timber.d("Make an api call $it")
+            }
+
+//
+//        hGetMapObservable()?.subscribe(
+//            {
+//                Timber.d("hGetMapObservable ${it}")
+//            },
+//            { Timber.d("hGetMapObservable ${it.message}") },
+//            { Timber.d("hGetMapObservable Completed") }
+//        )
+//
+//
+//        hGetBufferObservable()?.subscribe(
+//            {
+//                Timber.d("hGetBufferObservable ${it}")
+//            },
+//            { Timber.d("hGetBufferObservable ${it.message}") },
+//            { Timber.d("hGetBufferObservable Completed") }
+//        )
 
 
-
-        hGetDistinctObservable()?.subscribe(
-            {
-                Timber.d("hGetDistinctObservable ${it}")
-            },
-            { Timber.d("hGetDistinctObservable ${it.message}") },
-            { Timber.d("hGetDistinctObservable Completed") }
-        )
     }
 
     override fun onDestroy() {

@@ -27,7 +27,6 @@ fun hGetFilterObservable(): @NonNull Observable<TestData>? {
 }
 
 
-
 /*Returns on unique testdota downstream.
 *
 *
@@ -45,3 +44,9 @@ fun hGetDistinctObservable(): @NonNull Observable<TestData>? {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 }
+
+
+/*
+* Debounce Operator
+* Delay the emission for whatever the value is provided.
+* */
