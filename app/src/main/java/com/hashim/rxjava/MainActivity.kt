@@ -7,8 +7,7 @@ package com.hashim.rxjava
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hashim.rxjava.databinding.ActivityMainBinding
-import com.hashim.rxjava.operators.hGetIntervalObservable
-import com.hashim.rxjava.operators.hGetTimerObservable
+import com.hashim.rxjava.operators.hGetFromArrayObserveable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import timber.log.Timber
 
@@ -27,13 +26,10 @@ class MainActivity : AppCompatActivity() {
         * For this, CompositeDisposable is used
         * */
 
-        hGetIntervalObservable()?.subscribe(
-            { Timber.d("hIntervalOperator ${it}") },
-            { Timber.d("Exception ${it.message}") },
-            { Timber.d("hIntervalOperator Completed") }
-        )
-        hGetTimerObservable()?.subscribe(
-            { Timber.d("hGetTimerObservable ${it}") },
+        hGetFromArrayObserveable()?.subscribe(
+            {
+                Timber.d("hGetTimerObservable ${it}")
+            },
             { Timber.d("Exception ${it.message}") },
             { Timber.d("hGetTimerObservable Completed") }
         )
