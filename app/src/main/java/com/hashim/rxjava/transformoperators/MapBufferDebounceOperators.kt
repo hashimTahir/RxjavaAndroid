@@ -47,13 +47,12 @@ fun hGetBufferObservable(): @NonNull Observable<MutableList<TestData>>? {
 }
 
 
-
 /*
 * Debounce Operator
 *Say we have a seach view and user is typing, and the typed search event has to call
 * an api, its a bad idea to make an api call after each text change.
-* What would be ideal is to let the user keep typing. Wait for  say 500 or 1000 ms,
-* after that make the api call with the typed text.
+* What would be ideal is to let the user keep typing when stops typing.
+*  Wait for  say 500 or 1000 ms,after that make the api call with the typed text.
 * one can use the debounce operator for this purpose.
 *
 * Example is in MainActivity.

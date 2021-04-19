@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
+import com.hashim.rxjava.transformoperators.hGetFlatMapObservable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -39,8 +40,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    if (!string.isDisposed()) {
-                        string.onNext(newText);
+                    if (!string.isDisposed) {
+                        string.onNext(newText)
                     }
                     return false
                 }
@@ -54,23 +55,14 @@ class MainActivity : AppCompatActivity() {
                 Timber.d("Make an api call $it")
             }
 
-//
-//        hGetMapObservable()?.subscribe(
-//            {
-//                Timber.d("hGetMapObservable ${it}")
-//            },
-//            { Timber.d("hGetMapObservable ${it.message}") },
-//            { Timber.d("hGetMapObservable Completed") }
-//        )
-//
-//
-//        hGetBufferObservable()?.subscribe(
-//            {
-//                Timber.d("hGetBufferObservable ${it}")
-//            },
-//            { Timber.d("hGetBufferObservable ${it.message}") },
-//            { Timber.d("hGetBufferObservable Completed") }
-//        )
+
+        hGetFlatMapObservable()?.subscribe(
+            {
+                Timber.d("hGetFlatMapObservable ${it}")
+            },
+            { Timber.d("hGetFlatMapObservable ${it.message}") },
+            { Timber.d("hGetFlatMapObservable Completed") }
+        )
 
 
     }
