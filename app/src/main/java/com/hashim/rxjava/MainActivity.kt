@@ -7,7 +7,8 @@ package com.hashim.rxjava
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hashim.rxjava.databinding.ActivityMainBinding
-import com.hashim.rxjava.operators.hGetFromArrayObserveable
+import com.hashim.rxjava.filteroperators.hGetDistinctObservable
+import com.hashim.rxjava.filteroperators.hGetFilterObservable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import timber.log.Timber
 
@@ -26,14 +27,23 @@ class MainActivity : AppCompatActivity() {
         * For this, CompositeDisposable is used
         * */
 
-        hGetFromArrayObserveable()?.subscribe(
+        hGetFilterObservable()?.subscribe(
             {
-                Timber.d("hGetTimerObservable ${it}")
+                Timber.d("hGetFilterObservable ${it}")
             },
-            { Timber.d("Exception ${it.message}") },
-            { Timber.d("hGetTimerObservable Completed") }
+            { Timber.d("hGetFilterObservable ${it.message}") },
+            { Timber.d("hGetFilterObservable Completed") }
         )
 
+
+
+        hGetDistinctObservable()?.subscribe(
+            {
+                Timber.d("hGetDistinctObservable ${it}")
+            },
+            { Timber.d("hGetDistinctObservable ${it.message}") },
+            { Timber.d("hGetDistinctObservable Completed") }
+        )
     }
 
     override fun onDestroy() {

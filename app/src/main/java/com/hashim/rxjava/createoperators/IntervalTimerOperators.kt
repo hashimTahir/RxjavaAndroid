@@ -2,7 +2,7 @@
  * Copyright (c) 2021/  4/ 19.  Created by Hashim Tahir
  */
 
-package com.hashim.rxjava.operators
+package com.hashim.rxjava.createoperators
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.annotations.NonNull
