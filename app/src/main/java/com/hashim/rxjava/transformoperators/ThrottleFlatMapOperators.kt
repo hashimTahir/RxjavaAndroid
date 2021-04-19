@@ -60,3 +60,19 @@ fun hGetFlatMapObservable(): @NonNull Observable<Int?>? {
         .observeOn(AndroidSchedulers.mainThread())
 
 }
+
+
+/*
+* ConcatMap
+* Its Same as Flat map but order is maintained
+* */
+
+
+/*
+*
+* SwitchMap() will transform items emitted by an Observable into an Observable just
+* like ConcatMap() and FlatMap(). The difference being that it will unsubscribe
+* previous observers once a new Observer has subscribed.
+* Essentially this solves a limitation that both ConcatMap() and FlatMap() have.
+*
+* */
