@@ -4,10 +4,12 @@
 
 package com.hashim.rxjava
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
+import com.hashim.rxjava.flatmapexample.FlatMapActivity
 import com.hashim.rxjava.transformoperators.hGetFlatMapObservable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -65,6 +67,10 @@ class MainActivity : AppCompatActivity() {
         )
 
 
+
+        hActivityMainBinding.hFlatMapExampleB.setOnClickListener {
+            startActivity(Intent(this, FlatMapActivity::class.java))
+        }
     }
 
     override fun onDestroy() {

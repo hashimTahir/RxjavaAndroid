@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021/  4/ 22.  Created by Hashim Tahir
+  -->
+
+<resources>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_17sp">17sp</dimen>
+    <dimen name="_14sp">14sp</dimen>
+    <dimen name="_10dp">10dp</dimen>
+    <dimen name="_30dp">30dp</dimen>
+    <dimen name="_0dp">0dp</dimen>
+</resources>

@@ -4,4 +4,5 @@
 
 <resources>
     <string name="app_name">RxJava</string>
+    <string name="title_here">Title here</string>
 </resources>
