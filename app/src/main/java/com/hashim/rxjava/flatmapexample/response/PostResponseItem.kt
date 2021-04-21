@@ -15,5 +15,8 @@ data class PostResponseItem(
     @SerializedName("title")
     val title: String,
     @SerializedName("userId")
-    val userId: Int
+    val userId: Int,
+    val hCommentsResponse: CommentsResponse? = null
+
+
 )

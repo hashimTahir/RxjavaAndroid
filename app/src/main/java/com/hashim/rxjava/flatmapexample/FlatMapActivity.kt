@@ -6,6 +6,7 @@ package com.hashim.rxjava.flatmapexample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hashim.rxjava.databinding.ActivityFlatMapBinding
 
 
@@ -17,16 +18,29 @@ import com.hashim.rxjava.databinding.ActivityFlatMapBinding
 * */
 class FlatMapActivity : AppCompatActivity() {
     lateinit var hActivityFlatMapBinding: ActivityFlatMapBinding
+    lateinit var hPostsAdapter: PostsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hActivityFlatMapBinding = ActivityFlatMapBinding.inflate(layoutInflater)
         setContentView(hActivityFlatMapBinding.root)
 
         hInitRecyclerView()
+
+        /*Get the data from api.*/
+        hMakeApiCall()
+    }
+
+    private fun hMakeApiCall() {
+        TODO("Not yet implemented")
     }
 
     private fun hInitRecyclerView() {
-
+        hPostsAdapter = PostsAdapter()
+        hActivityFlatMapBinding.hRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@FlatMapActivity)
+            adapter = hPostsAdapter
+        }
 
     }
 }
