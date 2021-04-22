@@ -14,7 +14,7 @@ import com.hashim.rxjava.flatmapexample.response.PostResponseItem
 
 
 class PostsAdapter : RecyclerView.Adapter<PostsVh>() {
-    private lateinit var hPosts: PostResponse
+    private var hPosts = PostResponse()
 
     @NonNull
     override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): PostsVh {

@@ -22,7 +22,7 @@ class PostsVh(
         } else {
             hShowProgressBar(false)
             hItemRecyclerFlatMapBinding.hCommentsTv.text =
-                postResponseItem.hCommentsResponse.size.toString()
+                postResponseItem.hCommentsResponse!!.size.toString()
         }
     }
 

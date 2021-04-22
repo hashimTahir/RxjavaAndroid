@@ -13,10 +13,10 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("posts")
-    fun hGetPosts(): Observable<PostResponse>?
+    fun hGetPosts(): Observable<PostResponse>
 
     @GET("posts/{id}/comments")
     fun hGetComments(
         @Path("id") id: Int
-    ): Observable<CommentsResponse>?
+    ): Observable<CommentsResponse>
 }

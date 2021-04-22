@@ -5,6 +5,4 @@
 package com.hashim.rxjava.flatmapexample.response
 
 
-import com.google.gson.annotations.SerializedName
-
 class CommentsResponse : ArrayList<CommentsResponseItem>()
