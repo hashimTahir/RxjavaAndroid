@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import com.hashim.rxjava.flatmapexample.FlatMapActivity
-import com.hashim.rxjava.transformoperators.hGetFlatMapObservable
+import com.hashim.rxjava.zipoperator.hGetSequentialZipObservable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -58,12 +58,12 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-        hGetFlatMapObservable()?.subscribe(
+        hGetSequentialZipObservable()?.subscribe(
             {
-                Timber.d("hGetFlatMapObservable ${it}")
+                Timber.d("hGetSequentialZipObservable ${it}")
             },
-            { Timber.d("hGetFlatMapObservable ${it.message}") },
-            { Timber.d("hGetFlatMapObservable Completed") }
+            { Timber.d("hGetSequentialZipObservable ${it.message}") },
+            { Timber.d("hGetSequentialZipObservable Completed") }
         )
 
 
