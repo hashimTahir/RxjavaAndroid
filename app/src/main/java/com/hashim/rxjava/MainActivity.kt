@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import com.hashim.rxjava.flatmapexample.FlatMapActivity
+import com.hashim.rxjava.zipoperator.hGetParallelZipObservable
 import com.hashim.rxjava.zipoperator.hGetSequentialZipObservable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -65,7 +66,13 @@ class MainActivity : AppCompatActivity() {
             { Timber.d("hGetSequentialZipObservable ${it.message}") },
             { Timber.d("hGetSequentialZipObservable Completed") }
         )
-
+        hGetParallelZipObservable()?.subscribe(
+            {
+                Timber.d("hGetParallelZipObservable ${it}")
+            },
+            { Timber.d("hGetParallelZipObservable ${it.message}") },
+            { Timber.d("hGetParallelZipObservable Completed") }
+        )
 
 
         hActivityMainBinding.hFlatMapExampleB.setOnClickListener {

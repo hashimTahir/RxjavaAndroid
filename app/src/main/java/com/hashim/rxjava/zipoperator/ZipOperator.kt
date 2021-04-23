@@ -58,3 +58,41 @@ fun hGetSequentialZipObservable(): @NonNull Observable<String>? {
         .observeOn(AndroidSchedulers.mainThread())
 
 }
+
+
+fun hGetParallelZipObservable(): @NonNull Observable<String>? {
+
+    /*
+    * But adding subscribe on on each observale would let em run parallelly
+    *
+    * both above and below methods are same. Even running this method
+    * after the first one, would still result in this one getting finished first, as
+    * its running in parallel
+    *  */
+
+    return Observable.zip(
+        Observable.fromCallable {
+            for (i in 1..3) {
+                Thread.sleep(200)
+                Timber.d("Observer 1 Thread ${Thread.currentThread().name}")
+            }
+            return@fromCallable "Observalbe 1 complete"
+
+        }
+            .subscribeOn(Schedulers.newThread()),
+        Observable.fromCallable {
+            for (i in 1..3) {
+                Thread.sleep(200)
+                Timber.d("Observer 2 Thread ${Thread.currentThread().name}")
+            }
+            return@fromCallable "Observalbe 2 complete"
+        }
+            .subscribeOn(Schedulers.newThread()),
+
+        ) { a, b ->
+        "$a , $b"
+    }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+
+}
