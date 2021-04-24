@@ -8,10 +8,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import com.hashim.rxjava.combineoperators.hGetConcatObservable
+import com.hashim.rxjava.combineoperators.hGetMergeObservable
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import com.hashim.rxjava.flatmapexample.FlatMapActivity
-import com.hashim.rxjava.zipoperator.hGetParallelZipObservable
-import com.hashim.rxjava.zipoperator.hGetSequentialZipObservable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -59,19 +59,28 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-        hGetSequentialZipObservable()?.subscribe(
+//        hGetCombineLatestObservable()?.subscribe(
+//            {
+//                Timber.d("hGetCombineLatestObservable ${it}")
+//            },
+//            { Timber.d("hGetCombineLatestObservable ${it.message}") },
+//            { Timber.d("hGetCombineLatestObservable Completed") }
+//        )
+
+//        hGetMergeObservable()?.subscribe(
+//            {
+//                Timber.d("hGetMergeObservable ${it}")
+//            },
+//            { Timber.d("hGetMergeObservable ${it.message}") },
+//            { Timber.d("hGetMergeObservable Completed") }
+//        )
+
+        hGetConcatObservable()?.subscribe(
             {
-                Timber.d("hGetSequentialZipObservable ${it}")
+                Timber.d("hGetConcatObservable ${it}")
             },
-            { Timber.d("hGetSequentialZipObservable ${it.message}") },
-            { Timber.d("hGetSequentialZipObservable Completed") }
-        )
-        hGetParallelZipObservable()?.subscribe(
-            {
-                Timber.d("hGetParallelZipObservable ${it}")
-            },
-            { Timber.d("hGetParallelZipObservable ${it.message}") },
-            { Timber.d("hGetParallelZipObservable Completed") }
+            { Timber.d("hGetConcatObservable ${it.message}") },
+            { Timber.d("hGetConcatObservable Completed") }
         )
 
 
