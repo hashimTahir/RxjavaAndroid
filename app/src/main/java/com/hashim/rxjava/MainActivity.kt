@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import com.hashim.rxjava.flatmapexample.FlatMapActivity
-import com.hashim.rxjava.utilityoperators.hGetDoOnNextObservable
-import com.hashim.rxjava.utilityoperators.hGetDoOnSubscribeUnsubscribeEachObservable
-import com.hashim.rxjava.utilityoperators.hGetMaterializeObservable
+import com.hashim.rxjava.utilityoperators.hGetTimeInervalObservable
+import com.hashim.rxjava.utilityoperators.hGetTimeStampObservable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var hActivityMainBinding: ActivityMainBinding
@@ -59,45 +59,29 @@ class MainActivity : AppCompatActivity() {
                 Timber.d("Make an api call $it")
             }
 
-        hGetDoOnNextObservable()?.subscribe(
+        hGetTimeInervalObservable()?.subscribe(
             {
-                Timber.d("hGetDoOnNextObservable ${it}")
-            },
-            { Timber.d("hGetDoOnNextObservable ${it.message}") },
-            { Timber.d("hGetDoOnNextObservable Completed") }
-        )
-
-        hGetDoOnSubscribeUnsubscribeEachObservable()?.subscribe(
-            {
-                Timber.d("hGetDoOnSubscribeUnsubscribeEachObservable ${it}")
-            },
-            { Timber.d("hGetDoOnSubscribeUnsubscribeEachObservable ${it.message}") },
-            { Timber.d("hGetDoOnSubscribeUnsubscribeEachObservable Completed") }
-        )
-
-
-        hGetMaterializeObservable()?.subscribe(
-            /*
-                         * From the notification object, we can check if the
-                         * emitted item is:
-                         * isOnNext() or isOnError() or isOnComplete()
-                         *
-                         * Here we can basically fetch items that are successful
-                         * & omit items that resulted in error.
-                         *
-                         *  */
-            {
-                Timber.d("Materialize Notification value ${it.value}")
+                Timber.d("hGetTimeInervalObservable Time $it")
             }, {
-                Timber.d("Materialize exception ${it.message}")
 
-            }, {
-                Timber.d("Materialize Completed")
+            },
+            {
 
             }
         )
 
+        hGetTimeStampObservable()?.subscribe(
+            {
+                Timber.d("hGetTimeStampObservable Time $it")
 
+            },
+            {
+
+            },
+            {
+
+            }
+        )
 
         hActivityMainBinding.hFlatMapExampleB.setOnClickListener {
             startActivity(Intent(this, FlatMapActivity::class.java))
