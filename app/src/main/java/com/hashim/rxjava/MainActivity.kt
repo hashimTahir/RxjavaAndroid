@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import com.hashim.rxjava.flatmapexample.FlatMapActivity
-import com.hashim.rxjava.subjects.hRunMulticastSubject
-import com.hashim.rxjava.subjects.hRunSimpleSubjectExample
+import com.hashim.rxjava.subjects.hAsyncSubjectRunner
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -61,7 +60,14 @@ class MainActivity : AppCompatActivity() {
 
 
 //        hRunMultiCastObservable()
-        hRunMulticastSubject()
+//        hRunMulticastSubject()
+
+//        hPublishSubjectRunner()
+//        hBehaviourSubjectRunner()
+
+//        hReplaySubjectRunner()
+
+        hAsyncSubjectRunner()
 
         hActivityMainBinding.hFlatMapExampleB.setOnClickListener {
             startActivity(Intent(this, FlatMapActivity::class.java))
