@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.hashim.rxjava.databinding.ActivityMainBinding
 import com.hashim.rxjava.flatmapexample.FlatMapActivity
-import com.hashim.rxjava.utilityoperators.hGetTimeInervalObservable
-import com.hashim.rxjava.utilityoperators.hGetTimeStampObservable
+import com.hashim.rxjava.subjects.hRunMulticastSubject
+import com.hashim.rxjava.subjects.hRunSimpleSubjectExample
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -59,29 +59,9 @@ class MainActivity : AppCompatActivity() {
                 Timber.d("Make an api call $it")
             }
 
-        hGetTimeInervalObservable()?.subscribe(
-            {
-                Timber.d("hGetTimeInervalObservable Time $it")
-            }, {
 
-            },
-            {
-
-            }
-        )
-
-        hGetTimeStampObservable()?.subscribe(
-            {
-                Timber.d("hGetTimeStampObservable Time $it")
-
-            },
-            {
-
-            },
-            {
-
-            }
-        )
+//        hRunMultiCastObservable()
+        hRunMulticastSubject()
 
         hActivityMainBinding.hFlatMapExampleB.setOnClickListener {
             startActivity(Intent(this, FlatMapActivity::class.java))
